@@ -1,7 +1,8 @@
 package cn.edu.scau.zhangjiayi.domain;
 
 public class TestBean {
-    private String teststr;
+   
+	private String teststr;
 
 	private Integer testint;
 

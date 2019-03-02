@@ -20,10 +20,10 @@
     <!--sping的配置文件和业务逻辑有关的 -->
     <context:property-placeholder location="classpath:jdbc.properties" />
     <bean id="pooledDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-        <property name="jdbcUrl" value="${jdbc.url}"></property>
-        <property name="driverClass" value="${jdbc.driver}"></property>
-        <property name="user" value="${jdbc.user}"></property>
-        <property name="password" value="${jdbc.password}"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/tourism?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=UTC&amp;rewriteBatchedStatements=true"></property>
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="user" value="root"></property>
+        <property name="password" value="123456"></property>
     </bean>
     <!-- 配置和mybatis的整合 -->
 

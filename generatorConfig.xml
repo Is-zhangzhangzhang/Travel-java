@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<!-- 数据库驱动 JDBC -->
+	<classPathEntry location="D:\Software\eclipse-plugin\mysql-connector-java-8.0.13.jar" />
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<!-- 是否生成注释代时间戳 -->
+			<property name="suppressDate" value="true" />
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!--数据库链接信息：驱动类、URL，用户名、密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://127.0.0.1:3306/tourism?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=UTC&amp;rewriteBatchedStatements=true"
+			userId="root" password="123456">
+		</jdbcConnection>
+		<!-- java类处理器： -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!-- 生成模型的包名和位置
+			targetPackage:生成的类要放的包 
+			targetProject:目标项目-->
+		<javaModelGenerator targetPackage="cn.edu.scau.zhangjiayi.domain"
+			targetProject="webtourism Maven Webapp/src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- 生成映射文件的包名和位置 -->
+		<sqlMapGenerator targetPackage="mapper"
+			targetProject="webtourism Maven Webapp/src/main/resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!-- 生成DAO的包名和位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="cn.edu.scau.zhangjiayi.dao" targetProject="webtourism Maven Webapp/src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		<!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名 
+			 enableCountByExample（默认true）：MyBatis3Simple为false，指定是否生成动态查询总条数语句（用于分页的总条数查询）；
+			 enableUpdateByExample（默认true）：MyBatis3Simple为false，指定是否生成动态修改语句（只修改对象中不为空的属性）；
+			 enableDeleteByExample（默认true）：MyBatis3Simple为false，指定是否生成动态删除语句；
+			 enableSelectByExample（默认true）：MyBatis3Simple为false，指定是否生成动态查询语句；-->
+			<table tableName="testBean" domainObjectName="TestBean"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			</table>
+	</context>
+</generatorConfiguration>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.scau.zhangjiayi.dao.TestBeanMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.scau.zhangjiayi.domain.TestBean">
+    <result column="testStr" jdbcType="VARCHAR" property="teststr" />
+    <result column="testInt" jdbcType="INTEGER" property="testint" />
+  </resultMap>
+  <insert id="insert" parameterType="cn.edu.scau.zhangjiayi.domain.TestBean">
+    insert into testbean (testStr, testInt)
+    values (#{teststr,jdbcType=VARCHAR}, #{testint,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.edu.scau.zhangjiayi.domain.TestBean">
+    insert into testbean
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="teststr != null">
+        testStr,
+      </if>
+      <if test="testint != null">
+        testInt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="teststr != null">
+        #{teststr,jdbcType=VARCHAR},
+      </if>
+      <if test="testint != null">
+        #{testint,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>
