@@ -20,6 +20,14 @@
     from user
     where username = #{username,jdbcType=VARCHAR}
   </select>
+  
+  <!-- 根据username查询结果数sql -->
+  <select id="selectByNameOrIdOrPhone" resultType="cn.edu.scau.zhangjiayi.domain.User">
+  	select *
+  	from user
+  	where username = #{value} or idnumber = #{value} or phone = #{value}
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from user
     where username = #{username,jdbcType=VARCHAR}
@@ -125,4 +133,5 @@
       header_img = #{headerImg,jdbcType=VARCHAR}
     where username = #{username,jdbcType=VARCHAR}
   </update>
+
 </mapper>
