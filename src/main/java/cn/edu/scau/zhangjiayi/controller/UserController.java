@@ -62,24 +62,36 @@ public class UserController {
 	
 	@RequestMapping("/submitRegister")
 	@ResponseBody
-//	public String register(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject obj) throws Exception{
-	public String register() throws Exception{
+	public String register(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject obj) throws Exception{
 		Map <String,String> map = new HashMap<String,String>();
+		System.out.println("UserController register");
 		User user = new User();
-		String testStr = "{\"phoneNumber\":\"13656784264\",\"idNumber\":\"440123199902065418\",\"username\":\"jiayi\",\"password\":\"123456\",\"password2\":\"123456\"}";
-		JSONObject obj = JSON.parseObject(testStr);
-		user.setUsername(URLDecoder.decode(obj.getString("username"),"UTF-8"));
-		user.setIdnumber(URLDecoder.decode(obj.getString("idNumber"),"UTF-8"));
-		user.setPhone(URLDecoder.decode(obj.getString("phoneNumber"),"UTF-8"));
-		user.setPassword(URLDecoder.decode(obj.getString("password"),"UTF-8"));
+		user.setUsername(obj.getString("username"));
+		user.setIdnumber(obj.getString("idnumber"));
+		user.setPhone(obj.getString("phone"));
+		user.setPassword(obj.getString("password"));
 		user.setGrade("1");
 		user.setSex("1");
-//		int result = userService.addUser(user);
-//		if(result == 1)
-//			map.put("status", "1");
-//		else map.put("status", "0");
-//		String res = JSON.toJSONString(map);
-		return JSON.toJSONString(user);
+		int result = userService.addUser(user);
+		if(result == 1) {
+			map.put("status", "1");
+		} else {
+			map.put("status", "0");
+		}
+		String res = JSON.toJSONString(map);
+		return res;
+	}
+	
+	@RequestMapping("/submitLogin")
+	@ResponseBody
+	public String login(HttpServletRequest request, HttpServletResponse response, @RequestBody JSONObject obj) throws Exception{
+		System.out.println("Controller login");
+		Map <String,Object> map = new HashMap<String,Object>();
+		String name = obj.getString("name");
+		String pwd = obj.getString("password");
+		int result = userService.login(name,pwd);
+		map.put("status", result);
+		return JSON.toJSONString(map);
 	}
 
 	
